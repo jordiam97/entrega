@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+  <title>Pràctica HBBtv - Synchronization</title>
+  <meta http-equiv="content-type" content="Content-Type: application/vnd.hbbtv.xhtml+xml; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <script src="../js/keycodes.js"></script>
+  <script src="../js/hbbtvlib.js"></script>
+  <!-- This page javascript -->
+  <script src="../js/main.js"></script>
+   <!-- Bootstrap CSS -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet"/>
+</head>
+
+
+<body>
+
+  <!--The main page should have application manager, and should call show() at onload();-->
+  <object id="appmgr" type="application/oipfApplicationManager"></object>
+  <object id="oipfcfg" type="application/oipfConfiguration"></object>
+
+  <!-- The logical HbbTV Application graphic plane is 1280px horizontally by 720px vertically, so the every content should be draw in 1280 * 720 -->
+  <div style="left: 0px; top: 0px; width: 1280px; height: 720px;  position:absolute; background-color:whitesmoke; z-index:-1;"></div>
+
+  <!-- log messages -->
+  <div id="log" style="color:red;"></div>
+
+
+  <!-- GRAPHIC SAFE AREA, 1024 * 648 -->
+  <div class="container-fluid" style="left: 128px; top: 36px; width: 1024px; height: 648px; position:absolute; z-index:1;">
+
+    <h1>Synchronization Page</h1>
+  
+  </div>
+
+</body>
+
+</html>
