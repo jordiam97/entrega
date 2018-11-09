@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//HbbTV//1.1.1//EN" "http://www.hbbtv.org/dtd/HbbTV-1.1.1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+  <title>Pràctica HBBtv - Catalog</title>
+  <meta http-equiv="content-type" content="Content-Type: application/vnd.hbbtv.xhtml+xml; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script src="../js/keycodes.js"></script>
+  <script src="../js/hbbtvlib.js"></script>
+  <!-- This page javascript -->
+  <script src="../js/main.js"></script>
+  <!-- Bootstrap CSS -->
+  <link href="../css/bootstrap/bootstrap.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet"/>
+</head>
+
+
+<body>
+
+  <!--The main page should have application manager, and should call show() at onload();-->
+<object id="appmgr" type="application/oipfApplicationManager"></object>
+<object id="oipfcfg" type="application/oipfConfiguration"></object>
+
+  <!-- The logical HbbTV Application graphic plane is 1280px horizontally by 720px vertically, so the every content should be draw in 1280 * 720 -->
+  <div style="left: 0px; top: 0px; width: 1280px; height: 720px;  position:absolute; background-color:whitesmoke; z-index:-1;"></div>
+
+  <!-- log messages -->
+  <div id="log" style="color:red;"></div>
+
+
+  <!-- GRAPHIC SAFE AREA, 1024 * 648 -->
+  <div class="container-fluid" style="left: 128px; top: 36px; width: 1024px; height: 648px; position:absolute; z-index:1;">
+
+    <div class="container-fluid">
+      
+      <div class="row">
+        <div class="col">
+          
+          <!-- YouTube video list -->
+          <ul id="content-list" class="list-group">
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item active">Cras justo odio</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Morbi leo risus</li>
+            <li class="list-group-item">Porta ac consectetur ac</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+          </ul>
+
+        </div>
+
+        <div class="col">
+          
+          <div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px; height: 530px;">
+    
+            <div class="row">
+              <!-- Broadcast/YouTube preview -->
+              <img class="rounded mx-auto d-block img-thumbnail" src="../rec/background.jpg" alt="background" style="height: 190px; width: 330px;"></img>
+            </div>
+            
+            <div class="row">
+              <!-- Connected users list -->
+              
+              <ul id="title-list" class="list-group">
+                  <li class="list-group-item list-group-item-dark">Connected Users</li>
+              </ul>
+              <ul id="users-list" class="list-group">
+                
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                
+              </ul>
+            </div>
+
+            <div class="row">
+              <!-- Video Info -->
+              
+              <ul id="title-list" class="list-group">
+                  <li class="list-group-item list-group-item-dark">Videoclip info</li>
+              </ul>
+              <ul id="info-list" class="list-group">
+    
+                  <li class="list-group-item">Album</li>
+                  <li class="list-group-item">Artist</li>
+                  <li class="list-group-item">Votes</li>
+                  <li class="list-group-item">Description</li>
+                  
+                </ul>
+            </div>  
+
+          </div> 
+
+        </div>
+      </div>
+      
+      
+      <div class="row">
+        <div class="col">
+          <div class="alert alert-light">
+            <img src="../rec/red_button.png" alt="red_button" class="img-thumbnail" style="width: 60px;"/> Play Video <img src="../rec/green_button.png" alt="green_button" class="img-thumbnail" style="width: 60px;"/> Pause Video 
+            <img src="../rec/yellow_button.png" alt="yellow_button" class="img-thumbnail" style="width: 60px;"/> Stop video <img src="../rec/blue_button.png" alt="blue_button" class="img-thumbnail" style="width: 60px;"/> Fullscreen
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</body>
+
+</html>
