@@ -8,6 +8,7 @@ KEY_YELLOW = 405; //Y
 KEY_BLUE = 406; //B
 KEY_OK = 13; //Enter
 KEY_BACK = 461; //Borrar
+KEY_0 = 48; //0
 
 function setKeyset(mask) {
   try {
@@ -63,6 +64,10 @@ function eventHandler(e) {
       manageSyncPage("back");
       manageCatalogPage("back");
       break;
+    case KEY_0:
+      $("#log").append("destroy app");
+      destroyApp();
+      break;
     default:
       $("#log").append("..");
   }
@@ -87,25 +92,14 @@ function manageSyncPage(key) {
 }
 
 function manageCatalogPage(key) {
-  if (key == "back" && window.location.pathname == "/client/html/catalog.xhtml") {
+  if (
+    key == "back" &&
+    window.location.pathname == "/client/html/catalog.xhtml"
+  ) {
     //Go back to sync page
     window.location.href = "/client/html/sync.xhtml";
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Aixo de abaix no se que es
 

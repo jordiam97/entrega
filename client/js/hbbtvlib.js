@@ -1,14 +1,20 @@
+var app;
+
 function init() {
   document.onkeydown = eventHandler;
   try {
     var appMan = document.getElementById("oipfAppMan");
-    var app = appMan.getOwnerApplication(document);
+    app = appMan.getOwnerApplication(document);
     app.show();
     setKeyset(0x1+0x2+0x4+0x8+0x10+0x20+0x100);
   
   } catch (error) {
     $("#log").append("Error: " + error);
   }
+}
+
+function destroyApp() {
+  app.destroyApplication();
 }
 
 
