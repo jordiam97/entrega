@@ -1,5 +1,65 @@
-// follow OIPF
-// each keycode on Every Application and Every platform should have only one numeric numer
+KEY_UP = 38;
+KEY_DOWN = 40;
+KEY_LEFT = 37;
+KEY_RIGHT = 39;
+KEY_RED = 403;
+KEY_GREEN = 404;
+KEY_YELLOW = 405;
+KEY_BLUE = 406;
+
+function setKeyset(mask) {
+  try {
+    var elemcfg = document.getElementById("oipfcfg");
+    elemcfg.keyset.value = mask;
+  } catch (e) {}
+  try {
+    var elemcfg = document.getElementById("oipfcfg");
+    elemcfg.keyset.setValue(mask);
+  } catch (e) {}
+  try {
+    var app = document
+      .getElementById("oipfAppManr")
+      .getOwnerApplication(document);
+    app.privateData.keyset.setValue(mask);
+    app.privateData.keyset.value = mask;
+  } catch (e) {}
+}
+
+function eventHandler(e) {
+  switch (e.keyCode) {
+    case KEY_RIGHT:
+      $("#log").append("RIGHT");
+      break;
+    case KEY_LEFT:
+      $("#log").append("LEFT");
+      break;
+    case KEY_UP:
+      $("#log").append("UP");
+      break;
+    case KEY_DOWN:
+      $("#log").append("DOWN");
+      break;
+    case KEY_GREEN:
+      $("#log").append("GREEN");
+      break;
+    case KEY_BLUE:
+      $("#log").append("BLUE");
+      break;
+    case KEY_RED:
+      $("#log").append("RED");
+      break;
+    case KEY_YELLOW:
+      $("#log").append("YELLOW");
+      break;
+    default:
+      $("#log").append("..");
+  }
+}
+
+//Aixo de abaix no se que es
+
+/*
+
 if (typeof(VK_LEFT) == 'undefined') {
   var VK_LEFT = 0x25;
   var VK_UP = 0x26;
@@ -40,32 +100,5 @@ if (typeof(VK_0) == 'undefined') {
   var VK_9 = 0x39;
 }
 
-function setKeyset(mask) {
-  try {
-    var elemcfg = document.getElementById('oipfcfg');
-    elemcfg.keyset.value = mask;
-  } catch (e) {};
-  try {
-    var elemcfg = document.getElementById('oipfcfg');
-    elemcfg.keyset.setValue(mask);
-  } catch (e) {};
-  // for HbbTV 1.0:
-  try {
-    var app = document.getElementById('appmgr').getOwnerApplication(document);
-    app.privateData.keyset.setValue(mask);
-    app.privateData.keyset.value = mask;
-  } catch (e) {};
-}
 
-function eventHandler(e) {
-  switch (e.keyCode) {
-    case KEY_GREEN:
-      break;
-    case KEY_RIGHT:
-      break;
-    case KEY_LEFT:
-      break;
-    default:
-      $('#log').append("Otro boton pulsado");
-  }
-}
+*/

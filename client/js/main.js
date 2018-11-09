@@ -1,3 +1,5 @@
+/*
+
 window.onload = function(){
 
     //document.onkeydown = eventHandler;
@@ -13,3 +15,5 @@ window.onload = function(){
   
     //createPlayer(1);
   };
+
+  */
