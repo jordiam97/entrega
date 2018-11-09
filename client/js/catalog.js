@@ -3,7 +3,7 @@ var catalogJSON = []; //Array of players. JSON format.
 
 window.onload = function() {
 
-    init();                                               //For the app manager (ara des d'aquí)
+    init();                                               //For the app manager
 
     getCatalog(function callback(responseParsed) {        //Call to function
     catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable

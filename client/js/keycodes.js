@@ -2,10 +2,12 @@ KEY_UP = 38;
 KEY_DOWN = 40;
 KEY_LEFT = 37;
 KEY_RIGHT = 39;
-KEY_RED = 403;
-KEY_GREEN = 404;
-KEY_YELLOW = 405;
-KEY_BLUE = 406;
+KEY_RED = 403; //R
+KEY_GREEN = 404; //G
+KEY_YELLOW = 405; //Y
+KEY_BLUE = 406; //B
+KEY_OK = 13; //Enter
+KEY_BACK = 461; //Borrar
 
 function setKeyset(mask) {
   try {
@@ -46,15 +48,64 @@ function eventHandler(e) {
       $("#log").append("BLUE");
       break;
     case KEY_RED:
+      manageWelcomePage("red");
       $("#log").append("RED");
       break;
     case KEY_YELLOW:
       $("#log").append("YELLOW");
       break;
+    case KEY_OK:
+      manageSyncPage("ok");
+      $("#log").append("OK");
+      break;
+    case KEY_BACK:
+      $("#log").append("BACK");
+      manageSyncPage("back");
+      manageCatalogPage("back");
+      break;
     default:
       $("#log").append("..");
   }
 }
+
+function manageWelcomePage(key) {
+  if (key == "red" && window.location.pathname == "/client/index.xhtml") {
+    //Go to sync page
+    window.location.href = "/client/html/sync.xhtml";
+  }
+}
+
+function manageSyncPage(key) {
+  if (key == "ok" && window.location.pathname == "/client/html/sync.xhtml") {
+    //Go to catalog page
+    window.location.href = "/client/html/catalog.xhtml";
+  }
+  if (key == "back" && window.location.pathname == "/client/html/sync.xhtml") {
+    //Go back to welcome page
+    window.location.href = "/client/index.xhtml";
+  }
+}
+
+function manageCatalogPage(key) {
+  if (key == "back" && window.location.pathname == "/client/html/catalog.xhtml") {
+    //Go back to sync page
+    window.location.href = "/client/html/sync.xhtml";
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Aixo de abaix no se que es
 
