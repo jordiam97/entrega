@@ -5,7 +5,6 @@ window.onload = function() {
 
     getCatalog(function callback(responseParsed) {        //Call to function
     catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
-    console.log(catalogJSON);
     loadCatalog();
   });
 };
@@ -49,10 +48,17 @@ function loadCatalog() {
         var year = $("<div></div>");
         year.addClass("p-2");
         year.text(catalogJSON[i].id);
+
+        //Views
+        var v = $("<div></div>");
+        v.addClass("p-2");
+        name.addClass("font-weight-light");
+        v.text(catalogJSON[i].views.toString() + " views");
         
         row.append(image);
         row.append(year);
         row.append(name);
+        row.append(v);
         $("#content-list").append(row);
       }
 }
