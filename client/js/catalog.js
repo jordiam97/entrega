@@ -26,9 +26,33 @@ function getCatalog(callback) {
 
 function loadCatalog() {
     for (i = 0; i <catalogJSON.length; i++) {            
+        
+        //Row
         var row = $("<li></li>");
         row.addClass("list-group-item");
-        row.text(catalogJSON[i].name);
+        row.addClass("list-group-item-action");
+        row.addClass("d-flex");
+
+        //Image
+        var image = $("<img></img>");
+        image.attr("src", "../../server/" + catalogJSON[i].thumbnail_url);
+        image.attr('width', 150);
+        image.addClass("img-thumbnail");
+        
+        //Name
+        var name = $("<div></div>");
+        name.addClass("p-2");
+        name.addClass("font-weight-bold");
+        name.text(catalogJSON[i].name);
+
+        //Year
+        var year = $("<div></div>");
+        year.addClass("p-2");
+        year.text(catalogJSON[i].id);
+        
+        row.append(image);
+        row.append(year);
+        row.append(name);
         $("#content-list").append(row);
       }
 }
