@@ -1,10 +1,9 @@
 .list-group {
-    margin-bottom: 20px;
-    margin-top: 20px;
     overflow:scroll;
 }
 
 #content-list{
+    margin-top: 20px;
     width: 600px;
     max-height: 530px;
 }
@@ -22,8 +21,19 @@
     margin-top: 0px;
 }
 
-#title-list {
+#users {
     width: 330px;
     margin-top: 10px;
     margin-bottom: 0px;
+}
+
+#info {
+    width: 330px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.list-group-item.active {
+    background-color: cadetblue;
+    border-color: cadetblue;
 }

@@ -10,6 +10,9 @@ KEY_OK = 13; //Enter
 KEY_BACK = 461; //Borrar
 KEY_0 = 48; //0
 
+var row = 0;  //active row in catalog
+
+
 function setKeyset(mask) {
   try {
     var elemcfg = document.getElementById("oipfcfg");
@@ -28,48 +31,73 @@ function setKeyset(mask) {
   } catch (e) {}
 }
 
+
 function eventHandler(e) {
   switch (e.keyCode) {
+    
     case KEY_RIGHT:
-      $("#log").append("RIGHT");
+      manageCatalogFocus("right");
       break;
+
     case KEY_LEFT:
-      $("#log").append("LEFT");
+      manageCatalogFocus("left");
       break;
+
     case KEY_UP:
-      $("#log").append("UP");
+      var contentList = document.getElementById("content-list");
+      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+        if (row > 0) {
+          row--;
+        }
+        manageCatalogRow();
+      }
       break;
-    case KEY_DOWN:
-      $("#log").append("DOWN");
+    
+    case KEY_DOWN:  
+      var contentList = document.getElementById("content-list");
+      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+        if (row < catalogJSON.length-1) {
+          row++;
+        }
+        manageCatalogRow();
+      }
       break;
+    
     case KEY_GREEN:
       $("#log").append("GREEN");
       break;
+    
     case KEY_BLUE:
       $("#log").append("BLUE");
       break;
+    
     case KEY_RED:
       manageWelcomePage("red");
       $("#log").append("RED");
       break;
+    
     case KEY_YELLOW:
       $("#log").append("YELLOW");
       break;
+    
     case KEY_OK:
       manageSyncPage("ok");
       $("#log").append("OK");
       break;
+
     case KEY_BACK:
       $("#log").append("BACK");
       manageSyncPage("back");
       manageCatalogPage("back");
       break;
+
     case KEY_0:
       $("#log").append("destroy app");
       destroyApp();
       break;
+    
     default:
-      $("#log").append("..");
+      break;
   }
 }
 
@@ -100,6 +128,53 @@ function manageCatalogPage(key) {
     window.location.href = "/client/html/sync.xhtml";
   }
 }
+
+function manageCatalogRow() {
+
+  var contentList = document.getElementById("content-list");
+  if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+    for (i = 0; i<catalogJSON.length; i++) {
+      $("#row" + i).removeClass("active");
+      $("#nav"+i).hide();
+    }
+    $("#row" + row).addClass("active");
+    $("#nav"+ row).show();
+  }
+}
+
+function manageCatalogFocus(direction) {
+  if (direction == "left") {
+    $("#content-list").focus(); //focus to the content list
+    $("#users").removeClass("active");
+    $("#info").removeClass("active");
+
+  }else {
+    //give focus to connected users list or to info list
+
+    var contentList = document.getElementById("content-list");
+    // check for focus of content list
+    if (document.activeElement === contentList) {
+      //content list is focused --> focus to users list
+      $("#users-list").focus();
+      $("#info").removeClass("active");
+      $("#users").addClass("active");
+
+    }else {
+      //users list is focused --> focus to info list
+      $("#info-list").focus();
+      $("#info").addClass("active");
+      $("#users").removeClass("active");
+    }
+  }
+}
+
+
+
+
+
+
+
+
 
 //Aixo de abaix no se que es
 

@@ -1,5 +1,6 @@
 //Global variables
 var catalogJSON = []; //Array of players. JSON format.
+var usersNumber = 3;
 
 window.onload = function() {
 
@@ -31,8 +32,11 @@ function loadCatalog() {
         //Row
         var row = $("<li></li>");
         row.addClass("list-group-item");
-        row.addClass("list-group-item-action");
+        if (i == 0) {
+          row.addClass("active");
+        }
         row.addClass("d-flex");
+        row.attr('id', "row" + i);
 
         //Image
         var image = $("<img></img>");
@@ -56,12 +60,26 @@ function loadCatalog() {
         v.addClass("p-2");
         name.addClass("font-weight-light");
         v.text(catalogJSON[i].views.toString() + " views");
+
+        //Nav
+        var nav = $("<img></img>");
+        nav.attr("src", "../rec/navegation.png");
+        nav.css({height:"70px", margin: "10px"});
+        nav.addClass("img-thumbnail");
+        nav.attr('id', "nav" + i);
         
+        row.append(nav);
         row.append(image);
         row.append(year);
         row.append(name);
         row.append(v);
         $("#content-list").append(row);
-      }
+
+        if (i != 0) {
+          $("#nav" + i).hide();
+        }
+    }
+
+    $("#content-list").focus();
 }
 
