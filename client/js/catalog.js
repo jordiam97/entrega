@@ -1,5 +1,6 @@
 //Global variables
-var catalogJSON = []; //Array of players. JSON format.
+var catalogJSON = [];
+var usersJSON = []; 
 var usersNumber = 3;
 
 window.onload = function() {
@@ -9,6 +10,10 @@ window.onload = function() {
       catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
       loadCatalog();
     });
+    getUsers(function callback(responseParsed) {
+      usersJSON = responseParsed;
+      loadUsers();
+    });
 };
 
 function getCatalog(callback) {
@@ -17,6 +22,19 @@ function getCatalog(callback) {
     type: "POST",
     url: "../../server/management.php",
     data: { option:"getCatalog", data: null },
+    cache: false,
+    success: function(response) {
+      responseParsed = JSON.parse(response);            //Convert String to JSON parsed Array
+      callback(responseParsed);                         //Calls the callback function and pass it the server response
+    }
+  });
+}
+
+function getUsers(callback) {
+  $.ajax({
+    type: "POST",
+    url: "../../server/management.php",
+    data: { option:"getUsers", data: null },
     cache: false,
     success: function(response) {
       responseParsed = JSON.parse(response);            //Convert String to JSON parsed Array
@@ -88,6 +106,18 @@ function loadCatalog() {
     $("#info-music").text("Music: " + catalogJSON[0].music);
     $("#info-author").text("Author: " + catalogJSON[0].author);
     $("#info-views").text("Views: " + catalogJSON[0].views);
+}
+
+function loadUsers () {
+  for (i = 0; i < usersJSON.length; i++) {
+    //Row
+    var row = $("<li></li>");
+    row.addClass("list-group-item");
+    row.attr('id', "user" + usersJSON[i].id);
+    row.text(usersJSON[i].name);
+
+    $("#users-list").append(row);
+  }
 }
 
 function updateCatalog () {
