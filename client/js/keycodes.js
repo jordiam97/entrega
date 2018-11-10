@@ -85,7 +85,15 @@ function eventHandler(e) {
       break;
     
     case KEY_OK:
+      //si estem a la pagina de sync
       manageSyncPage("ok");
+
+      //si estem al cataleg i el focus esta a la content list
+      var contentList = document.getElementById("content-list");
+      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+        manageCatalogViews();
+      }
+
       $("#log").append("OK");
       break;
 
@@ -173,6 +181,14 @@ function manageCatalogFocus(direction) {
       $("#users").removeClass("active");
     }
   }
+}
+
+function manageCatalogViews() {
+  catalogJSON[row].views = catalogJSON[row].views + 1;
+  updateCatalog();
+
+  $("#views" + row).text(catalogJSON[row].views + " views");
+  $("#info-views").text("Views: " + catalogJSON[row].views);
 }
 
 

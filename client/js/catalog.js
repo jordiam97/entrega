@@ -3,13 +3,12 @@ var catalogJSON = []; //Array of players. JSON format.
 var usersNumber = 3;
 
 window.onload = function() {
+    init();                                                 //For the app manager
 
-    init();                                               //For the app manager
-
-    getCatalog(function callback(responseParsed) {        //Call to function
-    catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
-    loadCatalog();
-  });
+    getCatalog(function callback(responseParsed) {          //Call to function
+      catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
+      loadCatalog();
+    });
 };
 
 function getCatalog(callback) {
@@ -17,17 +16,17 @@ function getCatalog(callback) {
   $.ajax({
     type: "POST",
     url: "../../server/management.php",
-    data: { option:"getCatalog" },
+    data: { option:"getCatalog", data: null },
     cache: false,
     success: function(response) {
       responseParsed = JSON.parse(response);            //Convert String to JSON parsed Array
-      callback(responseParsed.videos);                  //Calls the callback function and pass it the server response
+      callback(responseParsed);                         //Calls the callback function and pass it the server response
     }
   });
 }
 
 function loadCatalog() {
-    for (i = 0; i <catalogJSON.length; i++) {            
+    for (i = 0; i < catalogJSON.length; i++) {            
         
         //Row
         var row = $("<li></li>");
@@ -60,6 +59,7 @@ function loadCatalog() {
         v.addClass("p-2");
         name.addClass("font-weight-light");
         v.text(catalogJSON[i].views.toString() + " views");
+        v.attr('id', "views" + i);
 
         //Nav
         var nav = $("<img></img>");
@@ -87,5 +87,18 @@ function loadCatalog() {
     $("#info-music").text("Music: " + catalogJSON[0].music);
     $("#info-author").text("Author: " + catalogJSON[0].author);
     $("#info-views").text("Views: " + catalogJSON[0].views);
+}
+
+function updateCatalog () {
+  var newCatalog = JSON.stringify(catalogJSON);
+  
+  $.ajax({
+    type: "POST",
+    url: "../../server/management.php",
+    data: { option:"updateCatalog", data: newCatalog},
+    cache: false,
+    success: function(response) {
+    }
+  });
 }
 
