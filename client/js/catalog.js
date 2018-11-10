@@ -1,6 +1,6 @@
 //Global variables
 var catalogJSON = [];
-var usersJSON = []; 
+var usersJSON = [];
 var usersNumber = 3;
 
 window.onload = function() {
@@ -9,15 +9,17 @@ window.onload = function() {
     getCatalog(function callback(responseParsed) {          //Call to function
       catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
       loadCatalog();
+  		createVideoPlayer(getVideoPath(catalogJSON[0].id));
     });
     getUsers(function callback(responseParsed) {
       usersJSON = responseParsed;
       loadUsers();
     });
+
 };
 
 function getCatalog(callback) {
-  
+
   $.ajax({
     type: "POST",
     url: "../../server/management.php",
@@ -44,8 +46,8 @@ function getUsers(callback) {
 }
 
 function loadCatalog() {
-    for (i = 0; i < catalogJSON.length; i++) {            
-        
+    for (i = 0; i < catalogJSON.length; i++) {
+
         //Row
         var row = $("<li></li>");
         row.addClass("list-group-item");
@@ -60,7 +62,7 @@ function loadCatalog() {
         image.attr("src", "../../server/" + catalogJSON[i].thumbnail_url);
         image.attr('width', 150);
         image.addClass("img-thumbnail");
-        
+
         //Name
         var name = $("<div></div>");
         name.addClass("p-2");
@@ -86,7 +88,7 @@ function loadCatalog() {
         nav.css({height:"70px", margin: "10px"});
         nav.addClass("img-thumbnail");
         nav.attr('id', "nav" + i);
-        
+
         row.append(nav);
         row.append(image);
         row.append(year);
@@ -122,7 +124,7 @@ function loadUsers () {
 
 function updateCatalog () {
   var newCatalog = JSON.stringify(catalogJSON);
-  
+
   $.ajax({
     type: "POST",
     url: "../../server/management.php",
@@ -133,3 +135,6 @@ function updateCatalog () {
   });
 }
 
+function getVideoPath(video_id) {
+  return "../../server/videos/" + video_id + ".mp4";
+}

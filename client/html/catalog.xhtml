@@ -6,49 +6,6 @@
   <title>Pràctica HBBtv - Catalog</title>
   <meta http-equiv="content-type" content="Content-Type: application/vnd.hbbtv.xhtml+xml; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-  <script type="text/javascript">
-    /*function createAVPlayer(url) {
-      var player;
-
-      player = document.createElement("object");
-      player.setAttribute("type", "video/mp4");
-      player.setAttribute("data", url);
-
-      document.body.appendChild(player);
-
-      player.setFullScreen(true);
-      player.play(1);
-      }*/
-
-      /**
-      * HTML5 video tag can be used only in HbbTV 2.0 profile
-      * @param url
-      */
-      function createVideoPlayer(url) {
-        var player, source;
-
-        player = document.createElement("video");
-        source = document.createElement("source");
-        source.src = url;
-        source.type = "video/mp4";
-        player.appendChild(source);
-
-        player.autoplay = true;
-
-        document.getElementById("video-container").appendChild(player);
-      }
-
-      window.onload = function() {
-
-        //app = appManager.getOwnerApplication(document);
-        //app.show();
-
-        createVideoPlayer("../../server/videos/2009.mp4");
-
-        // controls.initialize();
-      };
-    </script>
   <script src="../js/keycodes.js"></script>
   <script src="../js/hbbtvlib.js"></script>
   <!-- This page javascript -->
