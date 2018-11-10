@@ -30,23 +30,23 @@ function createAVPlayer(url) {
 			player.play(1);
 		}
 
-		/**
-		 * HTML5 video tag can be used only in HbbTV 2.0 profile
-		 * @param url
-		 */
-		function createVideoPlayer(url) {
-			var player, source;
+/**
+ * HTML5 video tag can be used only in HbbTV 2.0 profile
+ * @param url
+ */
+function createVideoPlayer(url) {
+	var player, source;
 
-			player = document.createElement("video");
-			source = document.createElement("source");
-			source.src = url;
-			source.type = "video/mp4";
-			player.appendChild(source);
+	player = document.createElement("video");
+	source = document.createElement("source");
+	source.src = url;
+	source.type = "video/mp4";
+	player.appendChild(source);
 
-			player.autoplay = true;
+	player.autoplay = true;
 
-			document.body.getElementById("video-container").appendChild(player);
-		}
+	document.body.getElementById("video-container").appendChild(player);
+}
 
 
 //El player no se si funciona o no
