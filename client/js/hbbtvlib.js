@@ -7,7 +7,7 @@ function init() {
     app = appMan.getOwnerApplication(document);
     app.show();
     setKeyset(0x1+0x2+0x4+0x8+0x10+0x20+0x100);
-  
+
   } catch (error) {
     $("#log").append("Error: " + error);
   }
@@ -17,38 +17,48 @@ function destroyApp() {
   app.destroyApplication();
 }
 
+function createAVPlayer(url) {
+			var player;
+
+			player = document.createElement("object");
+			player.setAttribute("type", "video/mp4");
+			player.setAttribute("data", url);
+
+			document.body.getElementById("video-container").appendChild(player);
+
+			player.setFullScreen(true);
+			player.play(1);
+		}
+
+		/**
+		 * HTML5 video tag can be used only in HbbTV 2.0 profile
+		 * @param url
+		 */
+		function createVideoPlayer(url) {
+			var player, source;
+
+			player = document.createElement("video");
+			source = document.createElement("source");
+			source.src = url;
+			source.type = "video/mp4";
+			player.appendChild(source);
+
+			player.autoplay = true;
+
+			document.body.getElementById("video-container").appendChild(player);
+		}
 
 
 //El player no se si funciona o no
 
-/*
 function createPlayer (video_id) {
-  try {
-    if ($("#video").length) {
-      $("#log").append("removing video object");
-      $("#video").stop();
-      video = document.getElementById("video");
-      video.stop();
-      document.body.removeChild(document.getElementById("video"));
-    }
-    video = document.createElement("object");
-    video.id = "video";
-    video.type = "video/mp4";
-    video.style.position = "absolute";
-    video.style.zIndex = 999;
-    video.style.width = "640px";
-    video.style.height = "300px";
-    video.style.top = "35%";
-    video.style.left = "23%";
-    video.data="videos/Terror.mp4";
-    $("#log").append(video.data);
-    $('body').append(video);
-    video.play();
-    video.onPlayStateChange = function() {
-      $("#log").append("state: " + video.playState);
-    };
-  } catch (e) {
-    $("#log").append(e + " error creating player");
+  var parsedURL;
+
+  if (parsedURL.type === "html5" && parseFloat(navigator.userAgent.substring(navigator.userAgent.indexOf("HbbTV/")+8, navigator.userAgent.indexOf(" ", navigator.userAgent.indexOf("HbbTV/")))) >= 3.1) {
+    createVideoPlayer(parsedURL.url);
+  } else {
+    createAVPlayer(parsedURL.url);
   }
+
+  controls.initialize();
 }
-*/
