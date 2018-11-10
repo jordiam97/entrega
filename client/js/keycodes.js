@@ -11,7 +11,7 @@ KEY_BACK = 461; //Borrar
 KEY_0 = 48; //0
 
 var row = 0;  //active row in catalog
-
+var fullscreen = false;
 
 function setKeyset(mask) {
   try {
@@ -151,7 +151,7 @@ function manageCatalogPage(key) {
   }
   if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
     if (player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
-      createVideoPlayer(getVideoPath(catalogJSON[row].id));
+      createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen);
       player = getPlayer();
       player.play();
     } else {
@@ -162,10 +162,18 @@ function manageCatalogPage(key) {
     player.currentTime = 0;
     player.pause();
   }
-  /*if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
-    var time = player.currentTime();
-    window.location.href = "/client/player.xhtml";
-  }*/
+  if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
+    player.pause();
+    var time = player.currentTime;
+    var source = player.getElementsByTagName("source")[0].src;
+    createVideoPlayer(source,fullscreen);
+    player = getPlayer();
+    player.onloadeddata = function() {
+      player.currentTime = time;
+    }
+    player.play();
+    fullscreen = !fullscreen;
+  }
 }
 
 function manageCatalogRow() {

@@ -11,6 +11,7 @@ window.onload = function() {
       loadCatalog();
   		createVideoPlayer(getVideoPath(catalogJSON[2].id),false);
     });
+
     getUsers(function callback(responseParsed) {
       usersJSON = responseParsed;
       loadUsers();
