@@ -80,6 +80,12 @@ function loadCatalog() {
         }
     }
 
+    //Focus to the catalog first
     $("#content-list").focus();
+
+    //Fill first row info
+    $("#info-music").text("Music: " + catalogJSON[0].music);
+    $("#info-author").text("Author: " + catalogJSON[0].author);
+    $("#info-views").text("Views: " + catalogJSON[0].views);
 }
 

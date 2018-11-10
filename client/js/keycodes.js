@@ -31,20 +31,24 @@ function setKeyset(mask) {
   } catch (e) {}
 }
 
-
+// Switch per realitzar accions al premer una tecla determinada
 function eventHandler(e) {
   switch (e.keyCode) {
     
     case KEY_RIGHT:
-      manageCatalogFocus("right");
+      if (window.location.pathname == "/client/html/catalog.xhtml") {
+        manageCatalogFocus("right");
+      }
       break;
 
     case KEY_LEFT:
-      manageCatalogFocus("left");
+      if (window.location.pathname == "/client/html/catalog.xhtml") { 
+        manageCatalogFocus("left");
+      } 
       break;
 
     case KEY_UP:
-      var contentList = document.getElementById("content-list");
+      var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
       if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
         if (row > 0) {
           row--;
@@ -54,7 +58,7 @@ function eventHandler(e) {
       break;
     
     case KEY_DOWN:  
-      var contentList = document.getElementById("content-list");
+      var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
       if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
         if (row < catalogJSON.length-1) {
           row++;
@@ -137,8 +141,12 @@ function manageCatalogRow() {
       $("#row" + i).removeClass("active");
       $("#nav"+i).hide();
     }
+    //fill data with current row
     $("#row" + row).addClass("active");
     $("#nav"+ row).show();
+    $("#info-music").text("Music: " + catalogJSON[row].music);
+    $("#info-author").text("Author: " + catalogJSON[row].author);
+    $("#info-views").text("Views: " + catalogJSON[row].views);
   }
 }
 
@@ -150,7 +158,6 @@ function manageCatalogFocus(direction) {
 
   }else {
     //give focus to connected users list or to info list
-
     var contentList = document.getElementById("content-list");
     // check for focus of content list
     if (document.activeElement === contentList) {
