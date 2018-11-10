@@ -23,6 +23,7 @@ function createVideoPlayer(url) {
   player = document.createElement("video");
   player.width = 330;
   player.height = 190;
+  player.id = "video";
   source = document.createElement("source");
   source.src = url;
   source.type = "video/mp4";
@@ -31,4 +32,8 @@ function createVideoPlayer(url) {
   player.autoplay = true;
 
   document.getElementById("video-container").appendChild(player);
+}
+function getPlayer() {
+  object = document.getElementsByTagName("video")[0];
+  return object;
 }

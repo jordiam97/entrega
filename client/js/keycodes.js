@@ -34,7 +34,7 @@ function setKeyset(mask) {
 // Switch per realitzar accions al premer una tecla determinada
 function eventHandler(e) {
   switch (e.keyCode) {
-    
+
     case KEY_RIGHT:
       if (window.location.pathname == "/client/html/catalog.xhtml") {
         manageCatalogFocus("right");
@@ -42,9 +42,9 @@ function eventHandler(e) {
       break;
 
     case KEY_LEFT:
-      if (window.location.pathname == "/client/html/catalog.xhtml") { 
+      if (window.location.pathname == "/client/html/catalog.xhtml") {
         manageCatalogFocus("left");
-      } 
+      }
       break;
 
     case KEY_UP:
@@ -56,8 +56,8 @@ function eventHandler(e) {
         manageCatalogRow();
       }
       break;
-    
-    case KEY_DOWN:  
+
+    case KEY_DOWN:
       var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
       if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
         if (row < catalogJSON.length-1) {
@@ -66,24 +66,29 @@ function eventHandler(e) {
         manageCatalogRow();
       }
       break;
-    
+
     case KEY_GREEN:
       $("#log").append("GREEN");
+      manageCatalogPage("green");
+
       break;
-    
+
     case KEY_BLUE:
       $("#log").append("BLUE");
+      manageCatalogPage("blue");
       break;
-    
+
     case KEY_RED:
       manageWelcomePage("red");
+      manageCatalogPage("red");
       $("#log").append("RED");
       break;
-    
+
     case KEY_YELLOW:
       $("#log").append("YELLOW");
+      manageCatalogPage("yellow");
       break;
-    
+
     case KEY_OK:
       //si estem a la pagina de sync
       manageSyncPage("ok");
@@ -109,7 +114,7 @@ function eventHandler(e) {
       window.location.href = "/client/index.xhtml";
       destroyApp();
       break;
-    
+
     default:
       break;
   }
@@ -134,12 +139,23 @@ function manageSyncPage(key) {
 }
 
 function manageCatalogPage(key) {
+  var player = getPlayer();
   if (
     key == "back" &&
     window.location.pathname == "/client/html/catalog.xhtml"
   ) {
     //Go back to sync page
     window.location.href = "/client/html/sync.xhtml";
+  }
+  if (key == "green" && window.location.pathname == "/client/html/catalog.xhtml") {
+    player.pause();
+  }
+  if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
+    player.play();
+  }
+  if (key == "yellow" && window.location.pathname == "/client/html/catalog.xhtml") {
+    player.currentTime = 0;
+    player.pause();
   }
 }
 
