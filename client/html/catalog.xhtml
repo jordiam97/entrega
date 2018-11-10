@@ -6,6 +6,49 @@
   <title>Pràctica HBBtv - Catalog</title>
   <meta http-equiv="content-type" content="Content-Type: application/vnd.hbbtv.xhtml+xml; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <script type="text/javascript">
+    /*function createAVPlayer(url) {
+      var player;
+
+      player = document.createElement("object");
+      player.setAttribute("type", "video/mp4");
+      player.setAttribute("data", url);
+
+      document.body.appendChild(player);
+
+      player.setFullScreen(true);
+      player.play(1);
+      }*/
+
+      /**
+      * HTML5 video tag can be used only in HbbTV 2.0 profile
+      * @param url
+      */
+      function createVideoPlayer(url) {
+        var player, source;
+
+        player = document.createElement("video");
+        source = document.createElement("source");
+        source.src = url;
+        source.type = "video/mp4";
+        player.appendChild(source);
+
+        player.autoplay = true;
+
+        document.getElementById("video-container").appendChild(player);
+      }
+
+      window.onload = function() {
+
+        //app = appManager.getOwnerApplication(document);
+        //app.show();
+
+        createVideoPlayer("../../server/videos/2009.mp4");
+
+        // controls.initialize();
+      };
+    </script>
   <script src="../js/keycodes.js"></script>
   <script src="../js/hbbtvlib.js"></script>
   <!-- This page javascript -->
@@ -23,7 +66,7 @@
   <!--application manager-->
   <object id="oipfAppMan" type="application/oipfApplicationManager"></object>
   <object id="oipfcfg" type="application/oipfConfiguration"></object>
-  
+
   <!-- The logical HbbTV Application graphic plane is 1280px horizontally by 720px vertically, so the every content should be draw in 1280 * 720 -->
   <div style="left: 0px; top: 0px; width: 1280px; height: 720px;  position:absolute; background-color:tan; z-index:-1;">
   </div>
@@ -36,10 +79,10 @@
   <div class="container-fluid" style="left: 128px; top: 36px; width: 1024px; height: 648px; position:absolute; z-index:1;">
 
     <div class="container-fluid">
-      
+
       <div class="row">
         <div class="col">
-          
+
           <!-- YouTube video list -->
           <ul id="content-list" class="list-group" role="tablist">
             <!-- S'omplie des del js -->
@@ -47,26 +90,26 @@
         </div>
 
         <div class="col">
-          
+
           <div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px; height: 530px;">
-    
-            <div class="row">
+
+            <div id="video-container" class="row" style="height: 190px; width: 330px;">
               <!-- Broadcast/YouTube preview -->
-              <img class="rounded mx-auto d-block img-thumbnail" src="../rec/background.jpg" alt="background" style="height: 190px; width: 330px;"></img>
+              <!-- <img class="rounded mx-auto d-block img-thumbnail" src="../rec/background.jpg" alt="background" style="height: 190px; width: 330px;"></img> -->
             </div>
-            
+
             <div class="row">
               <!-- Connected users list -->
-              
+
               <ul class="list-group">
                   <li id="users" class="list-group-item list-group-item-warning">Connected Users</li>
               </ul>
               <ul id="users-list" class="list-group">
-                
+
                 <li class="list-group-item">User 1</li>
                 <li class="list-group-item">User 2</li>
                 <li class="list-group-item">User 3</li>
-                
+
               </ul>
             </div>
 
@@ -80,18 +123,18 @@
                   <li id="info-author" class="list-group-item"></li>
                   <li id="info-views" class="list-group-item"></li>
                 </ul>
-            </div>  
+            </div>
 
-          </div> 
+          </div>
 
         </div>
       </div>
-      
-      
+
+
       <div class="row">
         <div class="col">
           <div class="alert alert-warning">
-            <img src="../rec/red_button.png" alt="red_button" class="img-thumbnail" style="width: 60px;"/> Play Video <img src="../rec/green_button.png" alt="green_button" class="img-thumbnail" style="width: 60px;"/> Pause Video 
+            <img src="../rec/red_button.png" alt="red_button" class="img-thumbnail" style="width: 60px;"/> Play Video <img src="../rec/green_button.png" alt="green_button" class="img-thumbnail" style="width: 60px;"/> Pause Video
             <img src="../rec/yellow_button.png" alt="yellow_button" class="img-thumbnail" style="width: 60px;"/> Stop video <img src="../rec/blue_button.png" alt="blue_button" class="img-thumbnail" style="width: 60px;"/> Fullscreen
           </div>
         </div>
