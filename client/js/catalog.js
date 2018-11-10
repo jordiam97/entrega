@@ -55,9 +55,10 @@ function loadCatalog() {
         year.text(catalogJSON[i].id);
 
         //Views
-        var v = $("<div></div>");
+        var v = $("<span></span>");
         v.addClass("p-2");
-        name.addClass("font-weight-light");
+        v.addClass("badge badge-secondary");
+        v.css({height:"30px", margin: "10px"});
         v.text(catalogJSON[i].views.toString() + " views");
         v.attr('id', "views" + i);
 
