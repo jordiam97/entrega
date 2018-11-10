@@ -18,6 +18,10 @@ function destroyApp() {
 }
 
 function createVideoPlayer(url) {
+  if (document.getElementsByTagName("video").length) {
+    document.getElementById("video-container").innerHTML = "";
+  }
+
   var player, source;
 
   player = document.createElement("video");

@@ -81,6 +81,11 @@ function eventHandler(e) {
     case KEY_RED:
       manageWelcomePage("red");
       manageCatalogPage("red");
+      //si estem al cataleg i el focus esta a la content list
+      var contentList = document.getElementById("content-list");
+      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+        //manageCatalogViews();
+      }
       $("#log").append("RED");
       break;
 
@@ -92,12 +97,6 @@ function eventHandler(e) {
     case KEY_OK:
       //si estem a la pagina de sync
       manageSyncPage("ok");
-
-      //si estem al cataleg i el focus esta a la content list
-      var contentList = document.getElementById("content-list");
-      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
-        manageCatalogViews();
-      }
 
       $("#log").append("OK");
       break;
@@ -151,12 +150,22 @@ function manageCatalogPage(key) {
     player.pause();
   }
   if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
-    player.play();
+    if (player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
+      createVideoPlayer(getVideoPath(catalogJSON[row].id));
+      player = getPlayer();
+      player.play();
+    } else {
+      player.play();
+    }
   }
   if (key == "yellow" && window.location.pathname == "/client/html/catalog.xhtml") {
     player.currentTime = 0;
     player.pause();
   }
+  /*if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
+    var time = player.currentTime();
+    window.location.href = "/client/player.xhtml";
+  }*/
 }
 
 function manageCatalogRow() {

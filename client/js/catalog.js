@@ -9,7 +9,7 @@ window.onload = function() {
     getCatalog(function callback(responseParsed) {          //Call to function
       catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
       loadCatalog();
-  		createVideoPlayer(getVideoPath(catalogJSON[2].id));
+  		createVideoPlayer(getVideoPath(catalogJSON[2].id),false);
     });
     getUsers(function callback(responseParsed) {
       usersJSON = responseParsed;
