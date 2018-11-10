@@ -105,6 +105,8 @@ function eventHandler(e) {
 
     case KEY_0:
       $("#log").append("destroy app");
+      //Go back to welcome page
+      window.location.href = "/client/index.xhtml";
       destroyApp();
       break;
     
