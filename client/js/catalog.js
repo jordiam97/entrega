@@ -9,14 +9,14 @@ window.onload = function() {
     getCatalog(function callback(responseParsed) {          //Call to function
       catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
       loadCatalog();
-  		createVideoPlayer(getVideoPath(catalogJSON[2].id),false);
+  		createVideoPlayer(getVideoPath(catalogJSON[0].id),false);
     });
 
     getUsers(function callback(responseParsed) {
       usersJSON = responseParsed;
       loadUsers();
     });
-    
+
     $("#press-blue").hide();
 
 };

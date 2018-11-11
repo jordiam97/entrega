@@ -36,20 +36,20 @@ function eventHandler(e) {
   switch (e.keyCode) {
 
     case KEY_RIGHT:
-      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+      if (!fullscreen && window.location.pathname == "/client/html/catalog.xhtml") {
         manageCatalogFocus("right");
       }
       break;
 
     case KEY_LEFT:
-      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+      if (!fullscreen && window.location.pathname == "/client/html/catalog.xhtml") {
         manageCatalogFocus("left");
       }
       break;
 
     case KEY_UP:
       var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
-      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
+      if (!fullscreen && window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
         if (row > 0) {
           row--;
         }
@@ -59,7 +59,7 @@ function eventHandler(e) {
 
     case KEY_DOWN:
       var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
-      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
+      if (!fullscreen && window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
         if (row < catalogJSON.length-1)  {
           row++;
         }
@@ -83,7 +83,7 @@ function eventHandler(e) {
       manageCatalogPage("red");
       //si estem al cataleg i el focus esta a la content list
       var contentList = document.getElementById("content-list");
-      if (window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
+      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
         //manageCatalogViews();
       }
       $("#log").append("RED");
@@ -110,7 +110,7 @@ function eventHandler(e) {
     case KEY_0:
       $("#log").append("destroy app");
       //Go back to welcome page
-      window.location.href = "/hbbtv/client/index.xhtml";
+      window.location.href = "/client/index.xhtml";
       destroyApp();
       break;
 
@@ -120,20 +120,20 @@ function eventHandler(e) {
 }
 
 function manageWelcomePage(key) {
-  if (key == "red" && window.location.pathname == "/hbbtv/client/index.xhtml") {
+  if (key == "red" && window.location.pathname == "/client/index.xhtml") {
     //Go to sync page
-    window.location.href = "/hbbtv/client/html/sync.xhtml";
+    window.location.href = "/client/html/sync.xhtml";
   }
 }
 
 function manageSyncPage(key) {
-  if (key == "ok" && window.location.pathname == "/hbbtv/client/html/sync.xhtml") {
+  if (key == "ok" && window.location.pathname == "/client/html/sync.xhtml") {
     //Go to catalog page
-    window.location.href = "/hbbtv/client/html/catalog.xhtml";
+    window.location.href = "/client/html/catalog.xhtml";
   }
-  if (key == "back" && window.location.pathname == "/hbbtv/client/html/sync.xhtml") {
+  if (key == "back" && window.location.pathname == "/client/html/sync.xhtml") {
     //Go back to welcome page
-    window.location.href = "/hbbtv/client/index.xhtml";
+    window.location.href = "/client/index.xhtml";
   }
 }
 
@@ -141,15 +141,15 @@ function manageCatalogPage(key) {
   var player = getPlayer();
   if (
     key == "back" &&
-    window.location.pathname == "/hbbtv/client/html/catalog.xhtml"
+    window.location.pathname == "/client/html/catalog.xhtml"
   ) {
     //Go back to sync page
-    window.location.href = "/hbbtv/client/html/sync.xhtml";
+    window.location.href = "/client/html/sync.xhtml";
   }
-  if (key == "green" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+  if (key == "green" && window.location.pathname == "/client/html/catalog.xhtml") {
     player.pause();
   }
-  if (key == "red" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+  if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
     if (player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
       createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen);
       player = getPlayer();
@@ -158,11 +158,11 @@ function manageCatalogPage(key) {
       player.play();
     }
   }
-  if (key == "yellow" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+  if (key == "yellow" && window.location.pathname == "/client/html/catalog.xhtml") {
     player.currentTime = 0;
     player.pause();
   }
-  if (key == "blue" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+  if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
     //player.pause();
     var time = player.currentTime;
     var source = player.getElementsByTagName("source")[0].src;
@@ -185,7 +185,7 @@ function manageCatalogPage(key) {
 function manageCatalogRow() {
 
   var contentList = document.getElementById("content-list");
-  if (window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
+  if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
     for (i = 0; i<catalogJSON.length; i++) {
       $("#row" + i).removeClass("active");
       $("#nav"+i).hide();
@@ -244,7 +244,7 @@ var swapFullscreen = function() {
 
 document.addEventListener('keydown',function(e) {
    var key = e.keyCode || e.which;
-   if(key === KEY_BLUE && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+   if(key === KEY_BLUE && window.location.pathname == "/client/html/catalog.xhtml") {
       swapFullscreen();
    }
 }, false);
