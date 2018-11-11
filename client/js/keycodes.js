@@ -68,13 +68,13 @@ function eventHandler(e) {
       break;
 
     case KEY_GREEN:
-      $("#log").append("GREEN");
+      //$("#log").append("GREEN");
       manageCatalogPage("green");
 
       break;
 
     case KEY_BLUE:
-      $("#log").append("BLUE");
+      //$("#log").append("BLUE");
       manageCatalogPage("blue");
       break;
 
@@ -84,13 +84,13 @@ function eventHandler(e) {
       //si estem al cataleg i el focus esta a la content list
       var contentList = document.getElementById("content-list");
       if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
-        //manageCatalogViews();
+        manageCatalogViews();
       }
-      $("#log").append("RED");
+      //$("#log").append("RED");
       break;
 
     case KEY_YELLOW:
-      $("#log").append("YELLOW");
+      //$("#log").append("YELLOW");
       manageCatalogPage("yellow");
       break;
 
@@ -98,17 +98,17 @@ function eventHandler(e) {
       //si estem a la pagina de sync
       manageSyncPage("ok");
 
-      $("#log").append("OK");
+      //$("#log").append("OK");
       break;
 
     case KEY_BACK:
-      $("#log").append("BACK");
+      //$("#log").append("BACK");
       manageSyncPage("back");
       manageCatalogPage("back");
       break;
 
     case KEY_0:
-      $("#log").append("destroy app");
+      //$("#log").append("destroy app");
       //Go back to welcome page
       window.location.href = "/client/index.xhtml";
       destroyApp();
@@ -162,7 +162,6 @@ function manageCatalogPage(key) {
     createVideoPlayer("",fullscreen,true);
   }
   if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
-    //player.pause();
     var time = player.currentTime;
     var source = player.getElementsByTagName("source")[0].src;
     createVideoPlayer(source,fullscreen,false);

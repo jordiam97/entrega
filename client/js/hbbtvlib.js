@@ -14,7 +14,13 @@ function init() {
 }
 
 function destroyApp() {
-  app.destroyApplication();
+  try {
+    var appMan = document.getElementById("oipfAppMan");
+    app = appMan.getOwnerApplication(document);
+    app.destroyApplication();
+  } catch (error) {
+    $("#log").append("Error: " + error);
+  }
 }
 
 function createVideoPlayer(url, fullscreen, broadcast) {
