@@ -151,7 +151,6 @@ function manageCatalogPage(key) {
   }
   if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
     var path = player.getElementsByTagName("source")[0].src;
-
     if (!fullscreen && !path.includes(catalogJSON[row].url)) {
       createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen,false);
       player = getPlayer();
