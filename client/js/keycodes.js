@@ -151,7 +151,7 @@ function manageCatalogPage(key) {
   }
   if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
     if (!fullscreen && player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
-      createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen);
+      createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen,false);
       player = getPlayer();
       player.play();
     } else {
@@ -166,7 +166,7 @@ function manageCatalogPage(key) {
     //player.pause();
     var time = player.currentTime;
     var source = player.getElementsByTagName("source")[0].src;
-    createVideoPlayer(source,fullscreen);
+    createVideoPlayer(source,fullscreen,false);
     player = getPlayer();
     player.onloadeddata = function() {
       player.currentTime = time;

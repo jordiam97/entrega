@@ -17,7 +17,7 @@ function destroyApp() {
   app.destroyApplication();
 }
 
-function createVideoPlayer(url, fullscreen) {
+function createVideoPlayer(url, fullscreen, broadcast) {
 
   if (document.getElementsByTagName("video").length) {
     document.getElementsByTagName("video")[0].parentNode.removeChild(document.getElementsByTagName("video")[0]);
@@ -29,7 +29,11 @@ function createVideoPlayer(url, fullscreen) {
   player.id = "video";
   source = document.createElement("source");
   source.src = url;
-  source.type = "video/mp4";
+  if (broadcast) {
+    source.type = "video/broadcast";
+  } else {
+    source.type = "video/mp4";
+  }
   player.appendChild(source);
 
   if (fullscreen) {
