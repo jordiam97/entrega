@@ -150,7 +150,7 @@ function manageCatalogPage(key) {
     player.pause();
   }
   if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
-    if (player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
+    if (!fullscreen && player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
       createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen);
       player = getPlayer();
       player.play();
