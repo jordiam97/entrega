@@ -84,7 +84,7 @@ function eventHandler(e) {
       //si estem al cataleg i el focus esta a la content list
       var contentList = document.getElementById("content-list");
       if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
-        //manageCatalogViews();
+        manageCatalogViews();
       }
       //$("#log").append("RED");
       break;
@@ -151,7 +151,6 @@ function manageCatalogPage(key) {
   }
   if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
     var path = player.getElementsByTagName("source")[0].src;
-
     if (!fullscreen && !path.includes(catalogJSON[row].url)) {
       createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen,false);
       player = getPlayer();
