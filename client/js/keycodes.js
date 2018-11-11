@@ -159,8 +159,7 @@ function manageCatalogPage(key) {
     }
   }
   if (key == "yellow" && window.location.pathname == "/client/html/catalog.xhtml") {
-    player.currentTime = 0;
-    player.pause();
+    createVideoPlayer("",fullscreen,true);
   }
   if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
     //player.pause();

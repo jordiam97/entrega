@@ -5,7 +5,7 @@ window.onload  = function() {
     init();                                                 //For the app manager
     timing();
 
-    createVideoPlayer("http://ccma-tva-int-abertis-live.hls.adaptive.level3.net/int/ngrp:tv3_web/playlist.m3u8",true,true);
+    createVideoPlayer("",true,true);
 
 };
 

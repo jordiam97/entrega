@@ -30,6 +30,7 @@ function createVideoPlayer(url, fullscreen, broadcast) {
   source = document.createElement("source");
   source.src = url;
   if (broadcast) {
+    source.src = "http://ccma-tva-int-abertis-live.hls.adaptive.level3.net/int/ngrp:tv3_web/playlist.m3u8"
     source.type = "video/broadcast";
   } else {
     source.type = "video/mp4";
