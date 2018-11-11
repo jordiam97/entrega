@@ -33,6 +33,7 @@ function createVideoPlayer(url, fullscreen, broadcast) {
 
   player = document.createElement("video");
   player.id = "video";
+  player.style.zIndex = 99;
   source = document.createElement("source");
   source.src = url;
   if (broadcast) {
@@ -58,7 +59,10 @@ function createVideoPlayer(url, fullscreen, broadcast) {
     player.width = 330;
     player.height = 190;
     player.style.zIndex = 10;
-    player.style.position = "relative";
+    //player.style.position = "relative";
+    player.style.position = "absolute";
+    player.style.top = "20px";
+    player.style.left = "15px";
 
     player.autoplay = true;
 
