@@ -171,8 +171,14 @@ function manageCatalogPage(key) {
     player.onloadeddata = function() {
       player.currentTime = time;
     };
-    //player.play();
-    alert(fullscreen);
+    if (fullscreen) {
+      $("#press-blue").show();
+      setTimeout(function () {
+        $("#press-blue").hide();
+      }, 5000);
+    } else {
+      $("#press-blue").hide();
+    }
   }
 }
 

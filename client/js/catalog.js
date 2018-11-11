@@ -4,7 +4,7 @@ var usersJSON = [];
 var usersNumber = 3;
 
 window.onload = function() {
-    init();                                                 //For the app manager
+    init();                                              //For the app manager
 
     getCatalog(function callback(responseParsed) {          //Call to function
       catalogJSON = responseParsed;                         //Callback function sets catalogJSON variable
@@ -16,6 +16,8 @@ window.onload = function() {
       usersJSON = responseParsed;
       loadUsers();
     });
+    
+    $("#press-blue").hide();
 
 };
 
@@ -138,4 +140,11 @@ function updateCatalog () {
 
 function getVideoPath(video_id) {
   return "../../server/videos/" + video_id + ".mp4";
+}
+
+function fullscreenTiming() {
+  timer = 5000;
+  setTimeout(function () {
+    $("#press-blue").show();
+  }, timer);
 }
