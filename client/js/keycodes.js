@@ -36,20 +36,20 @@ function eventHandler(e) {
   switch (e.keyCode) {
 
     case KEY_RIGHT:
-      if (window.location.pathname == "/client/html/catalog.xhtml") {
+      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
         manageCatalogFocus("right");
       }
       break;
 
     case KEY_LEFT:
-      if (window.location.pathname == "/client/html/catalog.xhtml") {
+      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
         manageCatalogFocus("left");
       }
       break;
 
     case KEY_UP:
       var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
-      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
         if (row > 0) {
           row--;
         }
@@ -59,8 +59,8 @@ function eventHandler(e) {
 
     case KEY_DOWN:
       var contentList = document.getElementById("content-list");//si el focus esta en aquesta zona
-      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
-        if (row < catalogJSON.length-1) {
+      if (!fullscreen && window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
+        if (row < catalogJSON.length-1)  {
           row++;
         }
         manageCatalogRow();
@@ -83,7 +83,7 @@ function eventHandler(e) {
       manageCatalogPage("red");
       //si estem al cataleg i el focus esta a la content list
       var contentList = document.getElementById("content-list");
-      if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+      if (window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
         //manageCatalogViews();
       }
       $("#log").append("RED");
@@ -110,7 +110,7 @@ function eventHandler(e) {
     case KEY_0:
       $("#log").append("destroy app");
       //Go back to welcome page
-      window.location.href = "/client/index.xhtml";
+      window.location.href = "/hbbtv/client/index.xhtml";
       destroyApp();
       break;
 
@@ -120,20 +120,20 @@ function eventHandler(e) {
 }
 
 function manageWelcomePage(key) {
-  if (key == "red" && window.location.pathname == "/client/index.xhtml") {
+  if (key == "red" && window.location.pathname == "/hbbtv/client/index.xhtml") {
     //Go to sync page
-    window.location.href = "/client/html/sync.xhtml";
+    window.location.href = "/hbbtv/client/html/sync.xhtml";
   }
 }
 
 function manageSyncPage(key) {
-  if (key == "ok" && window.location.pathname == "/client/html/sync.xhtml") {
+  if (key == "ok" && window.location.pathname == "/hbbtv/client/html/sync.xhtml") {
     //Go to catalog page
-    window.location.href = "/client/html/catalog.xhtml";
+    window.location.href = "/hbbtv/client/html/catalog.xhtml";
   }
-  if (key == "back" && window.location.pathname == "/client/html/sync.xhtml") {
+  if (key == "back" && window.location.pathname == "/hbbtv/client/html/sync.xhtml") {
     //Go back to welcome page
-    window.location.href = "/client/index.xhtml";
+    window.location.href = "/hbbtv/client/index.xhtml";
   }
 }
 
@@ -141,15 +141,15 @@ function manageCatalogPage(key) {
   var player = getPlayer();
   if (
     key == "back" &&
-    window.location.pathname == "/client/html/catalog.xhtml"
+    window.location.pathname == "/hbbtv/client/html/catalog.xhtml"
   ) {
     //Go back to sync page
-    window.location.href = "/client/html/sync.xhtml";
+    window.location.href = "/hbbtv/client/html/sync.xhtml";
   }
-  if (key == "green" && window.location.pathname == "/client/html/catalog.xhtml") {
+  if (key == "green" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
     player.pause();
   }
-  if (key == "red" && window.location.pathname == "/client/html/catalog.xhtml") {
+  if (key == "red" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
     if (player.getElementsByTagName("source")[0].src != "../../server/" + catalogJSON[row].url) {
       createVideoPlayer(getVideoPath(catalogJSON[row].id),fullscreen);
       player = getPlayer();
@@ -158,28 +158,28 @@ function manageCatalogPage(key) {
       player.play();
     }
   }
-  if (key == "yellow" && window.location.pathname == "/client/html/catalog.xhtml") {
+  if (key == "yellow" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
     player.currentTime = 0;
     player.pause();
   }
-  if (key == "blue" && window.location.pathname == "/client/html/catalog.xhtml") {
-    player.pause();
+  if (key == "blue" && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+    //player.pause();
     var time = player.currentTime;
     var source = player.getElementsByTagName("source")[0].src;
     createVideoPlayer(source,fullscreen);
     player = getPlayer();
     player.onloadeddata = function() {
       player.currentTime = time;
-    }
-    player.play();
-    fullscreen = !fullscreen;
+    };
+    //player.play();
+    alert(fullscreen);
   }
 }
 
 function manageCatalogRow() {
 
   var contentList = document.getElementById("content-list");
-  if (window.location.pathname == "/client/html/catalog.xhtml" && document.activeElement === contentList) {
+  if (window.location.pathname == "/hbbtv/client/html/catalog.xhtml" && document.activeElement === contentList) {
     for (i = 0; i<catalogJSON.length; i++) {
       $("#row" + i).removeClass("active");
       $("#nav"+i).hide();
@@ -226,57 +226,19 @@ function manageCatalogViews() {
   $("#info-views").text("Views: " + catalogJSON[row].views);
 }
 
-
-
-
-
-
-
-
-
-//Aixo de abaix no se que es
-
-/*
-
-if (typeof(VK_LEFT) == 'undefined') {
-  var VK_LEFT = 0x25;
-  var VK_UP = 0x26;
-  var VK_RIGHT = 0x27;
-  var VK_DOWN = 0x28;
+var swapFullscreen = function() {
+    return function() {
+    if(!fullscreen) {
+        fullscreen = true;
+        return;
+    }
+    fullscreen = false;
 }
-if (typeof(VK_ENTER) == 'undefined') {
-  var VK_ENTER = 0x0d;
-}
-if (typeof(VK_RED) == 'undefined') {
-  var VK_RED = 0x52;
-  var VK_GREEN = 0x56;
-  var VK_YELLOW = 0x4A;
-  var VK_BLUE = 0x42;
-}
-if (typeof(VK_PLAY) == 'undefined') {
-  var VK_PLAY = 0x50;
-  var VK_PAUSE = 0x51;
-  var VK_STOP = 0x53;
-}
-if (typeof(VK_FAST_FWD) == 'undefined') {
-  var VK_FAST_FWD = 0x46;
-  var VK_REWIND = 0x52;
-}
-if (typeof(VK_BACK) == 'undefined') {
-  var VK_BACK = 0xa6;
-}
-if (typeof(VK_0) == 'undefined') {
-  var VK_0 = 0x30;
-  var VK_1 = 0x31;
-  var VK_2 = 0x32;
-  var VK_3 = 0x33;
-  var VK_4 = 0x34;
-  var VK_5 = 0x35;
-  var VK_6 = 0x36;
-  var VK_7 = 0x37;
-  var VK_8 = 0x38;
-  var VK_9 = 0x39;
-}
+}();
 
-
-*/
+document.addEventListener('keydown',function(e) {
+   var key = e.keyCode || e.which;
+   if(key === KEY_BLUE && window.location.pathname == "/hbbtv/client/html/catalog.xhtml") {
+      swapFullscreen();
+   }
+}, false);

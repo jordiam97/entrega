@@ -42,7 +42,6 @@ function createVideoPlayer(url, fullscreen) {
 
     player.autoplay = true;
 
-
     document.body.appendChild(player);
   } else {
     player.width = 330;
